@@ -7,13 +7,10 @@
 				margin: 0px;
 			}
 			
-			#ratContainer {
-				height: 80%;
-				text-align: center;
-			}
-			
 			#ratPic {
-				height: 100%
+				display: block;
+				width: 100vw;
+				object-fit: contain;
 			}
 			
 			h1 {
@@ -28,10 +25,32 @@
 	<!-- 🧀🐀💖 -->
 	<body>
 		<h1>Even after all of this, im still just a rat on a computer.</h1>
-		<div id="ratContainer">
 			<img id="ratPic" src="rat.jpg">
-		</div>
 		<h1>Not that i mind.</h1>
 		<h1><a href="https://wollinger.io">🐀</a></h1>
 	</body>
+	<script>
+			var ratPic = document.getElementById("ratPic");
+			var headings = document.getElementsByTagName("h1");
+			
+			function refreshSize() {
+				var res = window.screen.width / window.screen.height;
+				var headingSize = "3em"; //Default CSS is 2em
+				if(res < 1) {
+					//Adjust for mobile style resolutions
+					ratPic.style.height = "40vh";
+					headingSize = "5vh";
+				} else {
+					//Desktop
+					ratPic.style.height = "75vh";
+				}
+				
+				for (var i = 0; i < headings.length; i++) {
+					headings[i].style.fontSize = headingSize;
+				}
+			}
+		
+			window.onresize = refreshSize;
+			refreshSize();
+		</script>
 </html>
